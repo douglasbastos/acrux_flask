@@ -10,3 +10,5 @@ class Noticia(Model):
 
     class Meta:
         database = db
+
+# Noticia.create_table()

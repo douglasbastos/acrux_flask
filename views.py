@@ -1,16 +1,10 @@
 import os
-from flask import Flask, request, current_app, send_from_directory, \
-    render_template
+
+from flask import request, current_app, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 
-from db_config import db
 from models import Noticia
-
-app = Flask(__name__)
-db.connect()
-
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-app.config['MEDIA_ROOT'] = os.path.join(PROJECT_ROOT, 'media_files')
+from news_app import app
 
 
 @app.route("/noticias/cadastro", methods=["GET", "POST"])
@@ -50,7 +44,3 @@ def noticia(noticia_id):
 @app.route('/media/<path:filename>')
 def media(filename):
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
-
-
-if __name__ == "__main__":
-    app.run(debug=True, use_reloader=True)
