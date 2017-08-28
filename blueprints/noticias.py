@@ -1,13 +1,15 @@
 import os
 
-from flask import request, current_app, render_template, send_from_directory
+from flask import request, current_app, render_template, send_from_directory, \
+    Blueprint
 from werkzeug.utils import secure_filename
 
 from models import Noticia
-from news_app import app
+
+noticias_blueprint = Blueprint('noticias', __name__)
 
 
-@app.route("/noticias/cadastro", methods=["GET", "POST"])
+@noticias_blueprint.route("/noticias/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":
 
@@ -27,7 +29,7 @@ def cadastro():
     return render_template('cadastro.html', title="Inserir nova noticia")
 
 
-@app.route("/")
+@noticias_blueprint.route("/")
 def index():
     todas_as_noticias = Noticia.select()
     return render_template('index.html',
@@ -35,12 +37,12 @@ def index():
                            title="Todas as notícias")
 
 
-@app.route("/noticia/<int:noticia_id>")
+@noticias_blueprint.route("/noticia/<int:noticia_id>")
 def noticia(noticia_id):
     noticia = Noticia.get(Noticia.id == noticia_id)
     return render_template('noticia.html', noticia=noticia)
 
 
-@app.route('/media/<path:filename>')
+@noticias_blueprint.route('/media/<path:filename>')
 def media(filename):
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
