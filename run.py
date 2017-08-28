@@ -1,4 +1,7 @@
+import sys
 from news_app import create_app
 
-app = create_app(config_filename='/home/douglas/workspace/acrux_flask/settings.py')
-app.run(debug=True, use_reloader=True)
+
+mode = sys.argv[1] if not len(sys.argv) else 'development'
+app = create_app(mode)
+app.run()
