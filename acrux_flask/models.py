@@ -1,6 +1,6 @@
 from peewee import Model, CharField, TextField
 
-from db_config import db
+from .db_config import db
 
 
 class Noticia(Model):

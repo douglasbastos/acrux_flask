@@ -4,7 +4,7 @@ from flask import request, current_app, render_template, send_from_directory, \
     Blueprint
 from werkzeug.utils import secure_filename
 
-from models import Noticia
+from ..models import Noticia
 
 noticias_blueprint = Blueprint('noticias', __name__)
 

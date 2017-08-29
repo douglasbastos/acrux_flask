@@ -1,6 +1,8 @@
 import unittest
-from news_app import create_app
+
 from flask import request
+
+from acrux_flask.news_app import create_app
 
 
 class BasicTestCase(unittest.TestCase):
