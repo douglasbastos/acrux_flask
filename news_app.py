@@ -8,6 +8,8 @@ def create_app(mode):
     db.connect()
     app = Flask(__name__)
     app.config.from_pyfile('{}.cfg'.format(mode))
+    app.config.from_object('settings')
+
     app.register_blueprint(noticias_blueprint, url_prefix='/portal')
 
     return app
