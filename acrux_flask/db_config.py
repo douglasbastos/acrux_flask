@@ -1,3 +1,3 @@
-from peewee import SqliteDatabase
+from flask_mongoengine import MongoEngine
 
-db = SqliteDatabase('noticia.db')
+db = MongoEngine()

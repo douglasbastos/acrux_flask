@@ -22,7 +22,7 @@ def cadastro():
             imagem.save(path)
             dados_do_formulario['imagem'] = filename
 
-        noticia = Noticia.create(**dados_do_formulario)
+        noticia = Noticia.objects.create(**dados_do_formulario)
         return render_template('cadastro_sucesso.html',
                                id_nova_noticia=noticia.id)
 
@@ -31,15 +31,15 @@ def cadastro():
 
 @noticias_blueprint.route("/")
 def index():
-    todas_as_noticias = Noticia.select()
+    todas_as_noticias = Noticia.objects.all()
     return render_template('index.html',
                            noticias=todas_as_noticias,
                            title="Todas as notícias")
 
 
-@noticias_blueprint.route("/noticia/<int:noticia_id>")
+@noticias_blueprint.route("/noticia/<noticia_id>")
 def noticia(noticia_id):
-    noticia = Noticia.get(Noticia.id == noticia_id)
+    noticia = Noticia.objects.get(id=noticia_id)
     return render_template('noticia.html', noticia=noticia)
 
 
