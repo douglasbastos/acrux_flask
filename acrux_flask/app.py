@@ -1,7 +1,7 @@
 from .db_config import db
 from flask import Flask
 
-from .blueprints.noticias import noticias_blueprint
+from .views.noticias import noticias_blueprint
 
 
 def create_app(mode):

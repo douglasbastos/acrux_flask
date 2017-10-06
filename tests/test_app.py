@@ -2,7 +2,7 @@ import unittest
 
 from flask import request
 
-from acrux_flask.news_app import create_app
+from acrux_flask.app import create_app
 
 
 class BasicTestCase(unittest.TestCase):
